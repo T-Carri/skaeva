@@ -1,0 +1,2368 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ESKAEVA · Textil, Maquinaria Industrial y Materiales de Construcción</title>
+<meta name="description" content="ESKAEVA S.A. de C.V. — Producción de fibras naturales y sintéticas, hilados, telas y confección; venta de maquinaria industrial, materiales de construcción, madera, metálicos, herramientas y plomería.">
+<meta name="theme-color" content="#0D2A1A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   ESKAEVA — Design tokens
+   Sistema áureo (φ = 1.618) aplicado a escala tipográfica,
+   espaciado y retículas. Regla de color 60 / 30 / 10.
+   ============================================================ */
+:root{
+  /* ---- 30% · Familia verde (marca) ---- */
+  --green-950:#06130C;
+  --green-900:#0D2A1A;
+  --green-800:#123A24;
+  --green-700:#17502F;
+  --green-600:#1E6B44;
+  --green-500:#2A8757;
+  --green-400:#4FA97A;
+  --green-300:#8FCBA9;
+  --green-200:#C6E3D3;
+  --green-100:#E6F2EB;
+  --green-50:#F2F8F4;
+
+  /* ---- 10% · Acento amarillo ---- */
+  --yellow:#F4C542;
+  --yellow-soft:#FFE08A;
+
+  /* ---- 60% · Neutros (base) ---- */
+  --white:#FFFFFF;
+  --surface:#F6F9F7;
+  --line:#E3EBE6;
+  --ink:#0F1B14;
+  --ink-soft:#33423A;
+  --muted:#5C6B62;
+
+  /* ---- Escala áurea de espaciado (base 8px → φ) ---- */
+  --s-1:.5rem;
+  --s-2:.8125rem;
+  --s-3:1.3125rem;
+  --s-4:2.125rem;
+  --s-5:3.4375rem;
+  --s-6:5.5625rem;
+  --s-7:9rem;
+
+  /* ---- Radios y sombras ---- */
+  --r-sm:12px;
+  --r-md:20px;
+  --r-lg:28px;
+  --r-xl:38px;
+
+  --shadow-soft:0 2px 6px -2px rgba(13,42,26,.08), 0 12px 34px -18px rgba(13,42,26,.22);
+  --shadow-lift:0 6px 16px -6px rgba(13,42,26,.12), 0 28px 60px -28px rgba(13,42,26,.34);
+  --shadow-deep:0 40px 90px -40px rgba(6,19,12,.55);
+
+  --ease:cubic-bezier(.22,.72,.28,1);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  margin:0;
+  font-family:'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size:1.0625rem;
+  line-height:1.68;
+  color:var(--ink);
+  background:var(--white);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+ul{list-style:none;margin:0;padding:0}
+
+h1,h2,h3,h4{
+  margin:0;
+  line-height:1.08;
+  letter-spacing:-.028em;
+  font-weight:800;
+  color:var(--green-900);
+}
+
+h1{font-size:clamp(2.4rem, 1.45rem + 3.9vw, 4.236rem)}
+h2{font-size:clamp(1.85rem, 1.35rem + 2.05vw, 2.618rem)}
+h3{font-size:clamp(1.15rem, 1.05rem + .35vw, 1.375rem);letter-spacing:-.018em}
+h4{font-size:1.0625rem;letter-spacing:-.012em}
+
+p{margin:0}
+
+.container{
+  width:min(1200px, 100% - 2.5rem);
+  margin-inline:auto;
+}
+
+section{scroll-margin-top:110px}
+
+/* --- Reveal on scroll --- */
+.reveal{
+  opacity:0;
+  transform:translateY(26px);
+  transition:opacity .85s var(--ease), transform .85s var(--ease);
+  transition-delay:var(--d, 0s);
+  will-change:opacity, transform;
+}
+.reveal.is-in{opacity:1;transform:none}
+.no-js .reveal{opacity:1;transform:none}
+
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:200;
+  background:var(--green-800);color:#fff;padding:.75rem 1.25rem;border-radius:0 0 12px 0;
+}
+.skip:focus{left:0}
+
+/* ============================================================
+   Liquid glass
+   ============================================================ */
+.glass{
+  background:linear-gradient(140deg, rgba(255,255,255,.86), rgba(255,255,255,.52));
+  -webkit-backdrop-filter:blur(20px) saturate(170%);
+  backdrop-filter:blur(20px) saturate(170%);
+  border:1px solid rgba(255,255,255,.72);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.9) inset,
+    0 18px 48px -24px rgba(13,42,26,.30);
+}
+
+/* ============================================================
+   Botones
+   ============================================================ */
+.btn{
+  --btn-bg:var(--green-700);
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  padding:.95rem 1.6rem;
+  border-radius:999px;
+  font-weight:700;
+  font-size:.9375rem;
+  letter-spacing:-.01em;
+  color:#fff;
+  background:var(--btn-bg);
+  border:1px solid transparent;
+  position:relative;
+  overflow:hidden;
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease), background .3s var(--ease), color .3s var(--ease);
+  box-shadow:0 12px 26px -14px rgba(13,42,26,.55);
+  white-space:nowrap;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 20px 38px -16px rgba(13,42,26,.55)}
+.btn:active{transform:translateY(0)}
+.btn svg{width:17px;height:17px;flex:none}
+
+.btn-primary{background:linear-gradient(135deg, var(--green-600), var(--green-800))}
+.btn-primary:hover{background:linear-gradient(135deg, var(--green-500), var(--green-700))}
+
+.btn-accent{
+  background:linear-gradient(135deg, var(--yellow), #E8B01F);
+  color:var(--green-900);
+  box-shadow:0 12px 26px -14px rgba(244,197,66,.85);
+}
+.btn-accent:hover{box-shadow:0 20px 40px -16px rgba(244,197,66,.95)}
+
+.btn-ghost{
+  background:rgba(255,255,255,.6);
+  color:var(--green-800);
+  border-color:var(--line);
+  box-shadow:0 8px 22px -16px rgba(13,42,26,.35);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+}
+.btn-ghost:hover{background:#fff;border-color:var(--green-200)}
+
+.btn-sm{padding:.72rem 1.25rem;font-size:.875rem}
+
+/* ============================================================
+   Header / Navegación
+   ============================================================ */
+.site-header{
+  position:fixed;
+  inset:0 0 auto 0;
+  z-index:100;
+  padding-top:var(--s-2);
+  transition:padding .4s var(--ease);
+}
+.site-header.is-scrolled{padding-top:.55rem}
+
+.nav{
+  display:flex;
+  align-items:center;
+  gap:var(--s-3);
+  padding:.55rem .55rem .55rem 1.1rem;
+  border-radius:999px;
+  transition:box-shadow .45s var(--ease), background .45s var(--ease);
+}
+.site-header.is-scrolled .nav{
+  box-shadow:0 1px 0 rgba(255,255,255,.9) inset, 0 20px 44px -26px rgba(13,42,26,.42);
+}
+
+/* --- Marca: soporte para logo imagen con fallback SVG --- */
+.brand{
+  display:flex;align-items:center;gap:.7rem;
+  margin-right:auto;
+  flex:none;
+}
+.brand-mark{
+  position:relative;
+  width:42px;height:42px;
+  border-radius:14px;
+  display:grid;place-items:center;
+  background:linear-gradient(140deg, var(--green-50), var(--green-100));
+  border:1px solid var(--green-200);
+  box-shadow:0 8px 18px -12px rgba(13,42,26,.5);
+  flex:none;
+  overflow:hidden;
+}
+.brand-mark svg{width:26px;height:26px}
+/* Logo imagen (opcional). Si el archivo no existe, el SVG queda visible. */
+.brand-img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:contain;
+  padding:6px;
+  background:#fff;
+}
+.brand-mark.brand-mark--lg{width:64px;height:64px;border-radius:20px}
+.brand-mark.brand-mark--lg svg{width:40px;height:40px}
+.brand-mark.brand-mark--xl{width:96px;height:96px;border-radius:28px}
+.brand-mark.brand-mark--xl svg{width:60px;height:60px}
+
+.brand-text{display:flex;flex-direction:column;line-height:1}
+.brand-name{
+  font-weight:800;
+  font-size:1.1rem;
+  letter-spacing:.16em;
+  color:var(--green-900);
+}
+.brand-sub{
+  font-size:.6rem;
+  letter-spacing:.28em;
+  color:var(--muted);
+  font-weight:600;
+  margin-top:.28rem;
+}
+
+.nav-menu{
+  display:flex;align-items:center;gap:.35rem;
+}
+.nav-menu a{
+  display:block;
+  padding:.6rem .95rem;
+  border-radius:999px;
+  font-size:.9125rem;
+  font-weight:600;
+  color:var(--ink-soft);
+  transition:color .25s var(--ease), background .25s var(--ease);
+}
+.nav-menu a:hover{color:var(--green-800);background:rgba(230,242,235,.85)}
+
+.nav-toggle{
+  display:none;
+  width:44px;height:44px;
+  border-radius:50%;
+  place-items:center;
+  gap:5px;
+  flex-direction:column;
+  background:var(--green-50);
+  border:1px solid var(--green-100);
+}
+.nav-toggle span{
+  display:block;width:19px;height:2px;border-radius:2px;
+  background:var(--green-800);
+  transition:transform .35s var(--ease), opacity .3s var(--ease);
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero{
+  position:relative;
+  padding-top:clamp(8rem, 15vh, 10.5rem);
+  padding-bottom:clamp(3.5rem, 8vh, 6rem);
+  overflow:hidden;
+  isolation:isolate;
+}
+.hero::before{
+  content:"";
+  position:absolute;inset:0;z-index:-3;
+  background:
+    radial-gradient(58% 55% at 12% 6%, rgba(79,169,122,.20), transparent 62%),
+    radial-gradient(46% 46% at 92% 2%, rgba(244,197,66,.16), transparent 60%),
+    linear-gradient(180deg, var(--green-50) 0%, #FBFDFC 55%, #fff 100%);
+}
+.hero::after{
+  content:"";
+  position:absolute;inset:0;z-index:-2;
+  background-image:
+    linear-gradient(rgba(30,107,68,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30,107,68,.05) 1px, transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(70% 60% at 50% 22%, #000, transparent 78%);
+  mask-image:radial-gradient(70% 60% at 50% 22%, #000, transparent 78%);
+}
+
+/* Marca de agua del logo */
+.hero-watermark{
+  position:absolute;
+  z-index:-1;
+  top:8%;
+  right:-6%;
+  width:min(46vw, 620px);
+  opacity:.05;
+  pointer-events:none;
+  filter:blur(.4px);
+}
+.hero-watermark svg{width:100%;height:auto;color:var(--green-800)}
+
+.blob{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(70px);
+  z-index:-1;
+  pointer-events:none;
+  opacity:.55;
+}
+.blob-1{
+  width:38vw;height:38vw;max-width:520px;max-height:520px;
+  background:radial-gradient(circle at 35% 35%, rgba(79,169,122,.55), transparent 68%);
+  top:-8%;left:-10%;
+  animation:float 18s ease-in-out infinite;
+}
+.blob-2{
+  width:30vw;height:30vw;max-width:420px;max-height:420px;
+  background:radial-gradient(circle at 60% 40%, rgba(244,197,66,.42), transparent 68%);
+  top:22%;right:-8%;
+  animation:float 22s ease-in-out infinite reverse;
+}
+@keyframes float{
+  0%,100%{transform:translate3d(0,0,0) scale(1)}
+  50%{transform:translate3d(0,-28px,0) scale(1.07)}
+}
+
+/* Retícula áurea 61.8 / 38.2 */
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.618fr 1fr;
+  gap:clamp(2rem, 4.5vw, 4.5rem);
+  align-items:center;
+}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.5rem 1rem .5rem .65rem;
+  border-radius:999px;
+  background:rgba(255,255,255,.72);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.85);
+  box-shadow:0 8px 22px -16px rgba(13,42,26,.4);
+  font-size:.8rem;
+  font-weight:700;
+  letter-spacing:.02em;
+  color:var(--green-700);
+  margin-bottom:var(--s-3);
+}
+.eyebrow .dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--yellow);
+  box-shadow:0 0 0 4px rgba(244,197,66,.25);
+  animation:pulse 2.6s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 4px rgba(244,197,66,.25)}
+  50%{box-shadow:0 0 0 9px rgba(244,197,66,.05)}
+}
+
+.hero h1{margin-bottom:var(--s-3)}
+.hero h1 .accent{
+  position:relative;
+  color:var(--green-600);
+  white-space:nowrap;
+}
+.hero h1 .accent::after{
+  content:"";
+  position:absolute;left:0;right:0;bottom:.06em;
+  height:.28em;
+  border-radius:.2em;
+  background:linear-gradient(90deg, rgba(244,197,66,.65), rgba(244,197,66,.15));
+  z-index:-1;
+}
+
+.hero-lead{
+  font-size:clamp(1.02rem, .96rem + .35vw, 1.15rem);
+  color:var(--ink-soft);
+  max-width:56ch;
+  margin-bottom:var(--s-4);
+}
+
+.hero-cta{
+  display:flex;flex-wrap:wrap;gap:.85rem;
+  margin-bottom:var(--s-4);
+}
+
+.hero-trust{
+  display:flex;flex-wrap:wrap;gap:var(--s-3);
+  padding-top:var(--s-3);
+  border-top:1px solid var(--line);
+}
+.trust-item{display:flex;align-items:center;gap:.6rem;font-size:.85rem;font-weight:600;color:var(--muted)}
+.trust-item svg{width:19px;height:19px;color:var(--green-500);flex:none}
+
+/* ---- Panel visual (tarjeta glass) ---- */
+.hero-visual{position:relative}
+
+.panel{
+  position:relative;
+  border-radius:var(--r-xl);
+  padding:1.4rem;
+  background:linear-gradient(150deg, rgba(255,255,255,.94), rgba(255,255,255,.62));
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  backdrop-filter:blur(24px) saturate(180%);
+  border:1px solid rgba(255,255,255,.9);
+  box-shadow:var(--shadow-lift);
+}
+.panel::before{
+  content:"";
+  position:absolute;inset:0;
+  border-radius:inherit;
+  padding:1px;
+  background:linear-gradient(150deg, rgba(255,255,255,.95), rgba(198,227,211,.35), rgba(255,255,255,.1));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  pointer-events:none;
+}
+
+.panel-head{
+  display:flex;align-items:center;gap:.7rem;
+  padding-bottom:1rem;
+  border-bottom:1px solid var(--line);
+  margin-bottom:1rem;
+}
+.panel-head .mark{
+  width:34px;height:34px;border-radius:11px;
+  background:linear-gradient(140deg,var(--green-600),var(--green-800));
+  display:grid;place-items:center;
+  color:#fff;flex:none;
+}
+.panel-head .mark svg{width:18px;height:18px}
+.panel-head strong{display:block;font-size:.9rem;font-weight:800;color:var(--green-900);letter-spacing:-.01em}
+.panel-head span{display:block;font-size:.72rem;color:var(--muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+
+.panel-row{
+  display:flex;align-items:center;gap:.85rem;
+  padding:.7rem 0;
+}
+.panel-row + .panel-row{border-top:1px dashed rgba(227,235,230,.9)}
+
+.panel-icon{
+  width:38px;height:38px;border-radius:12px;
+  display:grid;place-items:center;flex:none;
+  background:var(--green-50);
+  border:1px solid var(--green-100);
+  color:var(--green-600);
+}
+.panel-icon svg{width:19px;height:19px}
+.panel-row .label{font-size:.875rem;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.panel-row .sub{font-size:.75rem;color:var(--muted);font-weight:500}
+
+.panel-bar{
+  margin-left:auto;
+  width:74px;height:6px;border-radius:99px;
+  background:var(--green-100);
+  overflow:hidden;flex:none;
+}
+.panel-bar i{
+  display:block;height:100%;border-radius:99px;
+  background:linear-gradient(90deg,var(--green-400),var(--green-600));
+  width:0;
+  transition:width 1.5s var(--ease);
+}
+.panel-bar.is-in i{width:var(--w,90%)}
+
+/* Chips flotantes */
+.chip{
+  position:absolute;
+  display:flex;align-items:center;gap:.5rem;
+  padding:.6rem .95rem;
+  border-radius:999px;
+  font-size:.78rem;
+  font-weight:700;
+  color:var(--green-800);
+  background:linear-gradient(140deg, rgba(255,255,255,.95), rgba(255,255,255,.68));
+  -webkit-backdrop-filter:blur(16px) saturate(170%);
+  backdrop-filter:blur(16px) saturate(170%);
+  border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 16px 34px -20px rgba(13,42,26,.5);
+  animation:float 9s ease-in-out infinite;
+}
+.chip svg{width:15px;height:15px;flex:none}
+.chip-a{top:-14px;left:-18px;color:var(--green-700);animation-delay:-2s}
+.chip-b{bottom:26px;right:-22px;animation-delay:-5s}
+.chip-badge{
+  background:linear-gradient(135deg,var(--yellow),#E8B01F);
+  color:var(--green-900);
+  border-color:rgba(255,255,255,.6);
+}
+
+/* ============================================================
+   Marquee de sectores
+   ============================================================ */
+.marquee{
+  position:relative;
+  padding:var(--s-4) 0;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:var(--surface);
+  overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+}
+.marquee-track{
+  display:flex;
+  width:max-content;
+  gap:var(--s-5);
+  animation:scroll-x 38s linear infinite;
+}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes scroll-x{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+.marquee-item{
+  display:flex;align-items:center;gap:.75rem;
+  font-size:.95rem;
+  font-weight:700;
+  color:var(--green-800);
+  letter-spacing:-.01em;
+  white-space:nowrap;
+  opacity:.72;
+}
+.marquee-item::before{
+  content:"";
+  width:7px;height:7px;
+  border-radius:2px;
+  background:var(--green-400);
+  transform:rotate(45deg);
+  flex:none;
+}
+
+/* ============================================================
+   Encabezados de sección
+   ============================================================ */
+.section{padding-block:clamp(4rem, 9vh, var(--s-7))}
+
+.section-head{
+  max-width:62ch;
+  margin-bottom:var(--s-5);
+}
+.section-head.center{margin-inline:auto;text-align:center}
+
+.kicker{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-size:.76rem;
+  font-weight:800;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--green-600);
+  margin-bottom:var(--s-2);
+}
+.kicker::before{
+  content:"";
+  width:26px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,var(--yellow),var(--green-400));
+}
+.section-head.center .kicker::before{display:none}
+.section-head.center .kicker{gap:.55rem}
+
+.section-head p{
+  margin-top:var(--s-3);
+  color:var(--muted);
+  font-size:1.0625rem;
+}
+
+/* ============================================================
+   Servicios
+   ============================================================ */
+.services{
+  background:
+    radial-gradient(60% 50% at 100% 0%, rgba(230,242,235,.7), transparent 60%),
+    var(--white);
+}
+
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:var(--s-3);
+}
+
+.card{
+  position:relative;
+  padding:var(--s-4) var(--s-3) var(--s-3);
+  border-radius:var(--r-lg);
+  background:var(--white);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow-soft);
+  overflow:hidden;
+  transition:transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s var(--ease);
+  display:flex;flex-direction:column;
+}
+.card::before{
+  content:"";
+  position:absolute;
+  inset:auto auto -60% -30%;
+  width:200px;height:200px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(79,169,122,.20), transparent 65%);
+  opacity:0;
+  transition:opacity .55s var(--ease);
+  pointer-events:none;
+}
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-lift);
+  border-color:var(--green-200);
+}
+.card:hover::before{opacity:1}
+
+.card-icon{
+  width:52px;height:52px;
+  border-radius:16px;
+  display:grid;place-items:center;
+  background:linear-gradient(140deg, var(--green-50), var(--green-100));
+  border:1px solid var(--green-200);
+  color:var(--green-600);
+  margin-bottom:var(--s-3);
+  transition:transform .5s var(--ease), background .5s var(--ease), color .5s var(--ease);
+}
+.card-icon svg{width:24px;height:24px}
+.card:hover .card-icon{
+  transform:rotate(-6deg) scale(1.06);
+  background:linear-gradient(140deg, var(--green-600), var(--green-800));
+  color:#fff;
+  border-color:transparent;
+}
+
+.card h3{margin-bottom:.6rem}
+.card p{font-size:.9rem;color:var(--muted);margin-bottom:var(--s-3)}
+
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:auto}
+.tag{
+  font-size:.72rem;
+  font-weight:700;
+  padding:.32rem .68rem;
+  border-radius:999px;
+  background:var(--green-50);
+  color:var(--green-700);
+  border:1px solid var(--green-100);
+  letter-spacing:.01em;
+}
+.tag--yellow{background:rgba(244,197,66,.16);color:#8A6400;border-color:rgba(244,197,66,.35)}
+
+/* ============================================================
+   Nosotros — split áureo 61.8 / 38.2
+   ============================================================ */
+.about{
+  position:relative;
+  background:linear-gradient(180deg, var(--surface), var(--white));
+  overflow:hidden;
+}
+.about::before{
+  content:"";
+  position:absolute;
+  top:-120px;left:-120px;
+  width:420px;height:420px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(79,169,122,.14), transparent 68%);
+  filter:blur(30px);
+  pointer-events:none;
+}
+
+.split{
+  display:grid;
+  grid-template-columns:1.618fr 1fr;
+  gap:clamp(2.5rem, 6vw, var(--s-6));
+  align-items:center;
+}
+.split--reverse{grid-template-columns:1fr 1.618fr}
+.split--reverse .split-media{order:-1}
+
+.feature-list{display:grid;gap:var(--s-3);margin-top:var(--s-4)}
+.feature{
+  display:grid;
+  grid-template-columns:44px 1fr;
+  gap:1rem;
+  align-items:start;
+}
+.feature-mark{
+  width:44px;height:44px;
+  border-radius:14px;
+  display:grid;place-items:center;
+  background:var(--white);
+  border:1px solid var(--line);
+  color:var(--green-600);
+  box-shadow:var(--shadow-soft);
+  flex:none;
+}
+.feature-mark svg{width:20px;height:20px}
+.feature h4{margin-bottom:.25rem}
+.feature p{font-size:.9rem;color:var(--muted)}
+
+/* Composición visual */
+.media-stack{
+  position:relative;
+  display:grid;
+  gap:var(--s-2);
+  padding:var(--s-3);
+  border-radius:var(--r-xl);
+  background:linear-gradient(150deg, rgba(255,255,255,.9), rgba(242,248,244,.6));
+  -webkit-backdrop-filter:blur(20px);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.9);
+  box-shadow:var(--shadow-lift);
+}
+.media-hero{
+  position:relative;
+  border-radius:var(--r-lg);
+  overflow:hidden;
+  aspect-ratio:1.618 / 1;
+  background:
+    radial-gradient(120% 110% at 15% 10%, #2A8757 0%, #17502F 45%, #0D2A1A 100%);
+  display:grid;
+  place-items:center;
+  isolation:isolate;
+}
+.media-hero::before{
+  content:"";
+  position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(115deg, rgba(255,255,255,.055) 0 2px, transparent 2px 22px);
+  opacity:.9;
+}
+.media-hero::after{
+  content:"";
+  position:absolute;
+  width:60%;aspect-ratio:1;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(244,197,66,.34), transparent 62%);
+  bottom:-24%;right:-14%;
+  filter:blur(6px);
+}
+.media-hero svg{
+  position:relative;
+  width:min(56%, 220px);
+  height:auto;
+  opacity:.95;
+  filter:drop-shadow(0 18px 30px rgba(0,0,0,.35));
+}
+
+.media-stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:var(--s-2);
+}
+.mini{
+  padding:1.05rem 1.1rem;
+  border-radius:var(--r-md);
+  background:var(--white);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow-soft);
+  transition:transform .45s var(--ease), border-color .45s var(--ease);
+}
+.mini:hover{transform:translateY(-4px);border-color:var(--green-200)}
+.mini strong{
+  display:block;
+  font-size:1.55rem;
+  font-weight:800;
+  letter-spacing:-.03em;
+  color:var(--green-700);
+  line-height:1.1;
+}
+.mini span{
+  display:block;
+  margin-top:.3rem;
+  font-size:.76rem;
+  font-weight:600;
+  color:var(--muted);
+  letter-spacing:.02em;
+}
+
+/* ============================================================
+   Instalaciones — usa imagen externa con tratamiento de marca
+   ============================================================ */
+.facility{
+  background:var(--white);
+}
+.facility-grid{
+  display:grid;
+  grid-template-columns:1fr 1.618fr;
+  gap:clamp(2.5rem, 6vw, var(--s-6));
+  align-items:center;
+}
+
+.facility-media{
+  position:relative;
+  border-radius:var(--r-xl);
+  overflow:hidden;
+  aspect-ratio:1.618 / 1;
+  box-shadow:var(--shadow-lift);
+  isolation:isolate;
+  background:linear-gradient(140deg, var(--green-800), var(--green-950));
+}
+.facility-media img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  /* Tratamiento de marca: el contenido se integra a la paleta verde */
+  filter:saturate(.35) contrast(1.08) hue-rotate(55deg) brightness(.88);
+  transform:scale(1.03);
+  transition:transform 1.4s var(--ease), filter 1.4s var(--ease);
+}
+.facility-media:hover img{
+  transform:scale(1.08);
+  filter:saturate(.5) contrast(1.1) hue-rotate(55deg) brightness(.95);
+}
+.facility-tint{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(150deg, rgba(13,42,26,.78) 0%, rgba(30,107,68,.38) 55%, rgba(244,197,66,.14) 100%);
+  mix-blend-mode:multiply;
+  pointer-events:none;
+}
+.facility-grain{
+  position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(115deg, rgba(255,255,255,.05) 0 2px, transparent 2px 22px);
+  opacity:.55;
+  pointer-events:none;
+}
+.facility-tag{
+  position:absolute;
+  left:18px;bottom:18px;
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.55rem .95rem;
+  border-radius:999px;
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:#fff;
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.28);
+  -webkit-backdrop-filter:blur(14px) saturate(180%);
+  backdrop-filter:blur(14px) saturate(180%);
+}
+.facility-tag svg{width:14px;height:14px}
+
+.facility-points{display:grid;gap:var(--s-3);margin-top:var(--s-4)}
+.facility-point{
+  display:grid;
+  grid-template-columns:38px 1fr;
+  gap:.95rem;
+  align-items:start;
+}
+.facility-point .fp-dot{
+  width:38px;height:38px;border-radius:12px;
+  display:grid;place-items:center;flex:none;
+  background:var(--green-50);
+  border:1px solid var(--green-100);
+  color:var(--green-600);
+}
+.facility-point .fp-dot svg{width:18px;height:18px}
+.facility-point h4{margin-bottom:.2rem}
+.facility-point p{font-size:.88rem;color:var(--muted)}
+
+/* ============================================================
+   Banda oscura — métricas
+   ============================================================ */
+.band{
+  position:relative;
+  background:
+    radial-gradient(70% 120% at 12% 0%, rgba(42,135,87,.55), transparent 60%),
+    radial-gradient(60% 100% at 100% 100%, rgba(244,197,66,.18), transparent 60%),
+    linear-gradient(150deg, var(--green-900), var(--green-950));
+  color:#fff;
+  overflow:hidden;
+  isolation:isolate;
+}
+.band::before{
+  content:"";
+  position:absolute;inset:0;z-index:-1;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size:72px 72px;
+  -webkit-mask-image:radial-gradient(70% 70% at 50% 40%, #000, transparent 80%);
+  mask-image:radial-gradient(70% 70% at 50% 40%, #000, transparent 80%);
+}
+.band .kicker{color:var(--green-300)}
+.band h2{color:#fff}
+.band .section-head p{color:rgba(255,255,255,.72)}
+
+/* Marca de agua del logo en la banda */
+.band-watermark{
+  position:absolute;
+  z-index:0;
+  left:-6%;
+  bottom:-22%;
+  width:min(50vw, 640px);
+  opacity:.06;
+  pointer-events:none;
+}
+.band-watermark svg{width:100%;height:auto;color:#fff}
+
+.stats{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:var(--s-3);
+}
+.stat{
+  position:relative;
+  padding:var(--s-3);
+  border-radius:var(--r-lg);
+  background:linear-gradient(150deg, rgba(255,255,255,.11), rgba(255,255,255,.03));
+  -webkit-backdrop-filter:blur(14px) saturate(150%);
+  backdrop-filter:blur(14px) saturate(150%);
+  border:1px solid rgba(255,255,255,.14);
+  overflow:hidden;
+  transition:transform .5s var(--ease), border-color .5s var(--ease);
+}
+.stat:hover{transform:translateY(-5px);border-color:rgba(244,197,66,.4)}
+.stat::after{
+  content:"";
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg, var(--yellow), var(--green-400), transparent);
+  opacity:.8;
+}
+.stat-value{
+  font-size:clamp(2rem, 1.6rem + 1.4vw, 2.8rem);
+  font-weight:800;
+  letter-spacing:-.04em;
+  line-height:1;
+  color:#fff;
+  display:flex;
+  align-items:baseline;
+  gap:.12em;
+}
+.stat-value em{font-style:normal;color:var(--yellow);font-size:.6em}
+.stat-label{
+  margin-top:.7rem;
+  font-size:.82rem;
+  font-weight:600;
+  color:rgba(255,255,255,.68);
+  letter-spacing:.02em;
+}
+
+/* ============================================================
+   Proceso
+   ============================================================ */
+.steps{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:var(--s-3);
+  counter-reset:step;
+  position:relative;
+}
+.step{
+  position:relative;
+  padding:var(--s-4) var(--s-3) var(--s-3);
+  border-radius:var(--r-lg);
+  background:var(--white);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow-soft);
+  transition:transform .5s var(--ease), box-shadow .5s var(--ease);
+}
+.step:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift)}
+.step-num{
+  counter-increment:step;
+  width:46px;height:46px;
+  border-radius:14px;
+  display:grid;place-items:center;
+  font-weight:800;
+  font-size:1rem;
+  letter-spacing:-.02em;
+  color:var(--green-800);
+  background:linear-gradient(140deg, rgba(244,197,66,.32), rgba(244,197,66,.10));
+  border:1px solid rgba(244,197,66,.45);
+  margin-bottom:var(--s-3);
+}
+.step-num::before{content:"0" counter(step)}
+.step h4{margin-bottom:.45rem}
+.step p{font-size:.875rem;color:var(--muted)}
+
+/* ============================================================
+   Contacto — datos + WIP loader
+   ============================================================ */
+.contact{
+  position:relative;
+  background:
+    radial-gradient(55% 60% at 0% 100%, rgba(230,242,235,.9), transparent 62%),
+    radial-gradient(45% 50% at 100% 0%, rgba(244,197,66,.10), transparent 60%),
+    var(--white);
+  overflow:hidden;
+}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:var(--s-3);
+  margin-bottom:var(--s-5);
+}
+
+.contact-card{
+  position:relative;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:1rem;
+  padding:1.35rem 1.35rem;
+  border-radius:var(--r-lg);
+  background:linear-gradient(150deg, rgba(255,255,255,.96), rgba(255,255,255,.72));
+  -webkit-backdrop-filter:blur(18px) saturate(170%);
+  backdrop-filter:blur(18px) saturate(170%);
+  border:1px solid rgba(255,255,255,.9);
+  box-shadow:var(--shadow-soft);
+  overflow:hidden;
+  transition:transform .45s var(--ease), box-shadow .45s var(--ease), border-color .45s var(--ease);
+}
+.contact-card::before{
+  content:"";
+  position:absolute;
+  inset:auto -40% -70% auto;
+  width:180px;height:180px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(79,169,122,.20), transparent 65%);
+  opacity:0;
+  transition:opacity .5s var(--ease);
+  pointer-events:none;
+}
+.contact-card:hover{
+  transform:translateY(-5px);
+  box-shadow:var(--shadow-lift);
+  border-color:var(--green-200);
+}
+.contact-card:hover::before{opacity:1}
+
+.cc-icon{
+  width:48px;height:48px;
+  border-radius:15px;
+  display:grid;place-items:center;
+  background:linear-gradient(140deg, var(--green-50), var(--green-100));
+  border:1px solid var(--green-200);
+  color:var(--green-600);
+  flex:none;
+  transition:transform .45s var(--ease), background .45s var(--ease), color .45s var(--ease);
+}
+.cc-icon svg{width:22px;height:22px}
+.contact-card:hover .cc-icon{
+  background:linear-gradient(140deg, var(--green-600), var(--green-800));
+  color:#fff;
+  border-color:transparent;
+  transform:rotate(-5deg) scale(1.05);
+}
+
+.cc-body{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+.cc-label{
+  font-size:.68rem;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.cc-value{
+  font-size:1rem;
+  font-weight:800;
+  color:var(--green-900);
+  letter-spacing:-.015em;
+  word-break:break-word;
+  line-height:1.35;
+}
+.cc-arrow{
+  width:34px;height:34px;
+  border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--green-50);
+  color:var(--green-700);
+  flex:none;
+  transition:transform .4s var(--ease), background .4s var(--ease), color .4s var(--ease);
+}
+.cc-arrow svg{width:16px;height:16px}
+.contact-card:hover .cc-arrow{
+  transform:translateX(4px);
+  background:var(--green-700);
+  color:#fff;
+}
+
+.contact-card--wa .cc-icon{
+  background:linear-gradient(140deg, #E7F8EE, #D2F0DE);
+  color:#1F9E52;
+  border-color:#BEE6CC;
+}
+
+/* --- WIP Card --- */
+.wip-card{
+  position:relative;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:var(--s-3);
+  padding:var(--s-4);
+  border-radius:var(--r-xl);
+  background:linear-gradient(150deg, rgba(255,255,255,.94), rgba(242,248,244,.7));
+  -webkit-backdrop-filter:blur(22px) saturate(180%);
+  backdrop-filter:blur(22px) saturate(180%);
+  border:1px solid rgba(255,255,255,.9);
+  box-shadow:var(--shadow-lift);
+  overflow:hidden;
+}
+.wip-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  padding:1px;
+  background:linear-gradient(150deg, rgba(255,255,255,.95), rgba(198,227,211,.4), rgba(244,197,66,.25));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  pointer-events:none;
+}
+
+.wip-loader{
+  position:relative;
+  width:76px;height:76px;
+  flex:none;
+  display:grid;place-items:center;
+}
+.wip-ring{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  animation:spin 2s linear infinite;
+}
+.wip-ring circle{
+  transform-origin:30px 30px;
+}
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+.wip-icon{
+  width:44px;height:44px;
+  border-radius:14px;
+  display:grid;place-items:center;
+  background:linear-gradient(140deg, var(--green-600), var(--green-800));
+  color:#fff;
+  box-shadow:0 12px 24px -14px rgba(13,42,26,.6);
+}
+.wip-icon svg{width:22px;height:22px}
+
+.wip-text{min-width:0}
+.wip-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.32rem .75rem;
+  border-radius:999px;
+  background:rgba(244,197,66,.20);
+  border:1px solid rgba(244,197,66,.45);
+  color:#8A6400;
+  font-size:.66rem;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  margin-bottom:.65rem;
+}
+.wip-badge .dot{
+  width:6px;height:6px;border-radius:50%;
+  background:#E8B01F;
+  animation:pulse2 1.6s ease-in-out infinite;
+}
+@keyframes pulse2{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.4;transform:scale(.7)}
+}
+
+.wip-text h3{margin-bottom:.4rem;font-size:clamp(1.05rem, 1rem + .3vw, 1.25rem)}
+.wip-text p{font-size:.9rem;color:var(--muted);max-width:62ch}
+
+.wip-actions{display:flex;flex-wrap:wrap;gap:.6rem;flex:none}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.footer{
+  background:var(--green-950);
+  color:rgba(255,255,255,.68);
+  padding-block:var(--s-5) var(--s-3);
+  position:relative;
+  overflow:hidden;
+}
+.footer::before{
+  content:"";
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg, transparent, rgba(79,169,122,.6), transparent);
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.618fr 1fr 1fr 1fr;
+  gap:var(--s-4);
+  padding-bottom:var(--s-4);
+  border-bottom:1px solid rgba(255,255,255,.09);
+}
+.footer .brand-name{color:#fff}
+.footer .brand-sub{color:rgba(255,255,255,.45)}
+.footer .brand-mark{
+  background:rgba(255,255,255,.07);
+  border-color:rgba(255,255,255,.14);
+}
+.footer .brand-mark svg{color:var(--green-300)}
+.footer-about{
+  margin-top:var(--s-3);
+  font-size:.875rem;
+  max-width:42ch;
+  line-height:1.75;
+}
+.footer h5{
+  color:#fff;
+  font-size:.76rem;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  margin:0 0 var(--s-2);
+}
+.footer ul{display:grid;gap:.62rem}
+.footer ul a{
+  font-size:.875rem;
+  transition:color .25s var(--ease), transform .25s var(--ease);
+  display:inline-block;
+}
+.footer ul a:hover{color:var(--yellow);transform:translateX(3px)}
+
+.footer-bottom{
+  display:flex;flex-wrap:wrap;gap:var(--s-2);
+  justify-content:space-between;align-items:center;
+  padding-top:var(--s-3);
+  font-size:.78rem;
+  color:rgba(255,255,255,.45);
+}
+.footer-bottom strong{color:rgba(255,255,255,.7);font-weight:700}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width:1024px){
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .contact-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:var(--s-4) var(--s-3)}
+  .footer-grid > .footer-brand{grid-column:1 / -1}
+  .wip-card{grid-template-columns:auto 1fr;row-gap:var(--s-3)}
+  .wip-actions{grid-column:1 / -1}
+}
+
+@media (max-width:900px){
+  .hero-grid,
+  .split,
+  .split--reverse,
+  .facility-grid{
+    grid-template-columns:1fr;
+  }
+  .split--reverse .split-media{order:0}
+  .hero-visual{max-width:460px;margin-inline:auto;width:100%}
+  .nav-menu{
+    position:absolute;
+    top:calc(100% + .6rem);
+    left:0;right:0;
+    flex-direction:column;
+    align-items:stretch;
+    gap:.2rem;
+    padding:.85rem;
+    border-radius:var(--r-lg);
+    background:linear-gradient(140deg, rgba(255,255,255,.96), rgba(255,255,255,.86));
+    -webkit-backdrop-filter:blur(22px) saturate(180%);
+    backdrop-filter:blur(22px) saturate(180%);
+    border:1px solid rgba(255,255,255,.9);
+    box-shadow:var(--shadow-lift);
+    opacity:0;
+    transform:translateY(-10px) scale(.98);
+    pointer-events:none;
+    transition:opacity .3s var(--ease), transform .3s var(--ease);
+  }
+  .nav-menu.is-open{opacity:1;transform:none;pointer-events:auto}
+  .nav-menu a{padding:.8rem 1rem;border-radius:14px;font-size:.95rem}
+  .nav-toggle{display:flex}
+  .nav .btn-sm{display:none}
+  .site-header .container{position:relative}
+}
+
+@media (max-width:640px){
+  body{font-size:1rem}
+  .container{width:min(1200px, 100% - 1.75rem)}
+  .services-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .media-stats{grid-template-columns:1fr 1fr}
+  .hero-cta .btn{flex:1 1 auto}
+  .chip-a{left:-6px}
+  .chip-b{right:-6px}
+  .footer-grid{grid-template-columns:1fr}
+  .nav{padding-left:.75rem}
+  .wip-card{padding:var(--s-3);grid-template-columns:1fr;justify-items:flex-start}
+  .wip-loader{width:64px;height:64px}
+}
+
+/* ============================================================
+   Accesibilidad — movimiento reducido
+   ============================================================ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main">Saltar al contenido principal</a>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header" id="header">
+  <div class="container">
+    <nav class="nav glass" aria-label="Navegación principal">
+
+      <a href="#top" class="brand" aria-label="ESKAEVA, inicio">
+        <span class="brand-mark">
+          <!-- LOGO IMAGEN: reemplaza el src por tu archivo real (ej. logo-eskaeva.png).
+               Si el archivo no existe, el SVG de respaldo queda visible automáticamente. -->
+          <img src="logo-eskaeva.png" alt="ESKAEVA" class="brand-img" width="42" height="42"
+               loading="eager" decoding="async"
+               onerror="this.remove();">
+          <svg viewBox="0 0 48 48" fill="none" role="img" aria-hidden="true">
+            <defs>
+              <linearGradient id="brandGrad" x1="4" y1="6" x2="44" y2="42" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#4FA97A"/>
+                <stop offset="1" stop-color="#0D2A1A"/>
+              </linearGradient>
+            </defs>
+            <circle cx="21" cy="21" r="13.5" stroke="url(#brandGrad)" stroke-width="2.2"/>
+            <ellipse cx="21" cy="21" rx="5.6" ry="13.5" stroke="url(#brandGrad)" stroke-width="1.4" opacity=".55"/>
+            <path d="M7.5 21h27" stroke="url(#brandGrad)" stroke-width="1.4" opacity=".55"/>
+            <path d="M9.6 12.6c6.4 3.9 16.4 3.9 22.8 0M9.6 29.4c6.4-3.9 16.4-3.9 22.8 0"
+                  stroke="url(#brandGrad)" stroke-width="1.4" opacity=".42"/>
+            <path d="M4 41c10 2.5 25.5-1.5 33-15" stroke="#2A8757" stroke-width="3.4"
+                  stroke-linecap="round"/>
+            <path d="M31 22.4l8.6 1.8-3.4 8" stroke="#2A8757" stroke-width="3.4"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">ESKAEVA</span>
+          <span class="brand-sub">S.A. DE C.V.</span>
+        </span>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+
+      <a href="#contacto" class="btn btn-primary btn-sm">
+        Solicitar cotización
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14M13 6l6 6-6 6"/>
+        </svg>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú"
+              aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================ HERO ============================ -->
+<section class="hero" id="top">
+  <span class="blob blob-1" aria-hidden="true"></span>
+  <span class="blob blob-2" aria-hidden="true"></span>
+
+  <!-- Marca de agua del logo (se puede reemplazar por <img> si se sube logo) -->
+  <div class="hero-watermark" aria-hidden="true">
+    <svg viewBox="0 0 120 120" fill="none">
+      <circle cx="60" cy="60" r="38" stroke="currentColor" stroke-width="2.4"/>
+      <ellipse cx="60" cy="60" rx="16" ry="38" stroke="currentColor" stroke-width="1.4" opacity=".6"/>
+      <path d="M22 60h76" stroke="currentColor" stroke-width="1.4" opacity=".6"/>
+      <path d="M30 38c17 9 43 9 60 0M30 82c17-9 43-9 60 0" stroke="currentColor"
+            stroke-width="1.4" opacity=".45" fill="none"/>
+      <path d="M6 104c28 6 70-4 90-42" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      <path d="M80 56l24 4-8 22" stroke="currentColor" stroke-width="4"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <div class="container">
+    <div class="hero-grid">
+
+      <!-- 61.8% -->
+      <div class="hero-copy">
+        <span class="eyebrow reveal">
+          <span class="dot" aria-hidden="true"></span>
+          Industria textil · Maquinaria · Construcción
+        </span>
+
+        <h1 class="reveal" style="--d:.08s">
+          Suministro integral para la industria que <span class="accent">construye y viste</span> a México.
+        </h1>
+
+        <p class="hero-lead reveal" style="--d:.16s">
+          En <strong>ESKAEVA</strong> producimos fibras naturales y sintéticas, hilados, telas
+          y confección para ropa y artículos del hogar; además suministramos maquinaria
+          industrial, materiales de construcción, madera, metálicos, herramientas y plomería.
+          Un solo proveedor, múltiples soluciones.
+        </p>
+
+        <div class="hero-cta reveal" style="--d:.24s">
+          <a href="#contacto" class="btn btn-primary">
+            Solicitar cotización
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+          </a>
+          <a href="#servicios" class="btn btn-ghost">
+            Ver servicios
+          </a>
+        </div>
+
+        <div class="hero-trust reveal" style="--d:.32s">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+            Entrega en sitio, instalado y funcional
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2l8 4v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10V6l8-4z"/>
+            </svg>
+            Especificaciones técnicas garantizadas
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
+            </svg>
+            Precios con vigencia mínima de 60 días
+          </div>
+        </div>
+      </div>
+
+      <!-- 38.2% -->
+      <div class="hero-visual reveal" style="--d:.3s">
+        <div class="panel">
+
+          <div class="panel-head">
+            <span class="mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 7h16M4 12h16M4 17h10"/>
+              </svg>
+            </span>
+            <span>
+              <strong>Portafolio ESKAEVA</strong>
+              <span>Líneas activas</span>
+            </span>
+          </div>
+
+          <div class="panel-row">
+            <span class="panel-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 7c3-3 6 3 9 0s6-3 9 0M3 12c3-3 6 3 9 0s6-3 9 0M3 17c3-3 6 3 9 0s6-3 9 0"/>
+              </svg>
+            </span>
+            <span>
+              <span class="label">Fibras, hilados y telas</span>
+              <span class="sub">Naturales y sintéticas</span>
+            </span>
+            <span class="panel-bar" style="--w:96%"><i></i></span>
+          </div>
+
+          <div class="panel-row">
+            <span class="panel-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 3L4 5 2 9l3 1.5V21h14V10.5L22 9l-2-4-5-2-3 3-3-3z"/>
+              </svg>
+            </span>
+            <span>
+              <span class="label">Confección y hogar</span>
+              <span class="sub">Ropa y artículos textiles</span>
+            </span>
+            <span class="panel-bar" style="--w:88%"><i></i></span>
+          </div>
+
+          <div class="panel-row">
+            <span class="panel-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6h.09A1.65 1.65 0 0 0 10.6 3.09V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+            </span>
+            <span>
+              <span class="label">Maquinaria industrial</span>
+              <span class="sub">Venta y puesta en marcha</span>
+            </span>
+            <span class="panel-bar" style="--w:82%"><i></i></span>
+          </div>
+
+          <div class="panel-row">
+            <span class="panel-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/>
+              </svg>
+            </span>
+            <span>
+              <span class="label">Construcción y plomería</span>
+              <span class="sub">Madera, metálicos, herramientas</span>
+            </span>
+            <span class="panel-bar" style="--w:91%"><i></i></span>
+          </div>
+
+        </div>
+
+        <span class="chip chip-a">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 6L9 17l-5-5"/>
+          </svg>
+          Calidad garantizada
+        </span>
+
+        <span class="chip chip-b chip-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/>
+          </svg>
+          Cobertura nacional
+        </span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ MARQUEE ============================ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Fibras naturales</span>
+    <span class="marquee-item">Fibras sintéticas</span>
+    <span class="marquee-item">Hilados</span>
+    <span class="marquee-item">Telas</span>
+    <span class="marquee-item">Confección</span>
+    <span class="marquee-item">Artículos del hogar</span>
+    <span class="marquee-item">Maquinaria industrial</span>
+    <span class="marquee-item">Materiales de construcción</span>
+    <span class="marquee-item">Madera</span>
+    <span class="marquee-item">Metálicos</span>
+    <span class="marquee-item">Herramientas</span>
+    <span class="marquee-item">Plomería</span>
+    <span class="marquee-item">Fibras naturales</span>
+    <span class="marquee-item">Fibras sintéticas</span>
+    <span class="marquee-item">Hilados</span>
+    <span class="marquee-item">Telas</span>
+    <span class="marquee-item">Confección</span>
+    <span class="marquee-item">Artículos del hogar</span>
+    <span class="marquee-item">Maquinaria industrial</span>
+    <span class="marquee-item">Materiales de construcción</span>
+    <span class="marquee-item">Madera</span>
+    <span class="marquee-item">Metálicos</span>
+    <span class="marquee-item">Herramientas</span>
+    <span class="marquee-item">Plomería</span>
+  </div>
+</div>
+
+<!-- ============================ SERVICIOS ============================ -->
+<section class="section services" id="servicios">
+  <div class="container">
+
+    <header class="section-head center reveal">
+      <span class="kicker">Nuestras líneas</span>
+      <h2>Seis divisiones, una sola cadena de suministro</h2>
+      <p>
+        Desde la fibra hasta la obra terminada. Integramos producción textil, maquinaria
+        y materiales para que tu operación no dependa de múltiples proveedores.
+      </p>
+    </header>
+
+    <div class="services-grid">
+
+      <article class="card reveal" style="--d:.02s">
+        <span class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7c3-3 6 3 9 0s6-3 9 0M3 12c3-3 6 3 9 0s6-3 9 0M3 17c3-3 6 3 9 0s6-3 9 0"/>
+          </svg>
+        </span>
+        <h3>Fibras, hilados y telas</h3>
+        <p>
+          Producción de fibras naturales y sintéticas, hilatura y fabricación de telas
+          con control de calidad en cada lote.
+        </p>
+        <div class="tags">
+          <span class="tag">Algodón</span>
+          <span class="tag">Poliéster</span>
+          <span class="tag">Hilatura</span>
+          <span class="tag tag--yellow">Tejidos</span>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--d:.08s">
+        <span class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 3L4 5 2 9l3 1.5V21h14V10.5L22 9l-2-4-5-2-3 3-3-3z"/>
+          </svg>
+        </span>
+        <h3>Confección y hogar</h3>
+        <p>
+          Prendas de vestir y artículos textiles para el hogar, con acabados
+          resistentes y especificaciones a medida.
+        </p>
+        <div class="tags">
+          <span class="tag">Ropa</span>
+          <span class="tag">Blancos</span>
+          <span class="tag tag--yellow">Uniformes</span>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--d:.14s">
+        <span class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6h.09A1.65 1.65 0 0 0 10.6 3.09V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </span>
+        <h3>Maquinaria industrial</h3>
+        <p>
+          Venta de maquinaria para producción textil y procesos industriales,
+          con instalación, funcionalidad y puesta en operación.
+        </p>
+        <div class="tags">
+          <span class="tag">Instalación</span>
+          <span class="tag">Refacciones</span>
+          <span class="tag tag--yellow">Puesta en marcha</span>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--d:.02s">
+        <span class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/>
+          </svg>
+        </span>
+        <h3>Materiales de construcción</h3>
+        <p>
+          Suministro de materiales, madera y productos metálicos para obra civil,
+          remodelación e infraestructura industrial.
+        </p>
+        <div class="tags">
+          <span class="tag">Madera</span>
+          <span class="tag">Metálicos</span>
+          <span class="tag tag--yellow">Obra civil</span>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--d:.08s">
+        <span class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </span>
+        <h3>Herramientas</h3>
+        <p>
+          Herramienta manual y eléctrica para talleres, plantas de producción
+          y cuadrillas de mantenimiento.
+        </p>
+        <div class="tags">
+          <span class="tag">Manual</span>
+          <span class="tag">Eléctrica</span>
+          <span class="tag tag--yellow">Industrial</span>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--d:.14s">
+        <span class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2.7 6.5 9.2a7.5 7.5 0 1 0 11 0L12 2.7z"/>
+          </svg>
+        </span>
+        <h3>Plomería</h3>
+        <p>
+          Tubería, conexiones, válvulas y accesorios hidráulicos con especificación
+          técnica y entrega programada.
+        </p>
+        <div class="tags">
+          <span class="tag">Tubería</span>
+          <span class="tag">Válvulas</span>
+          <span class="tag tag--yellow">Hidráulica</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ NOSOTROS ============================ -->
+<section class="section about" id="nosotros">
+  <div class="container">
+    <div class="split">
+
+      <div class="split-copy reveal">
+        <span class="kicker">Por qué ESKAEVA</span>
+        <h2>Un proveedor que entiende el proceso completo</h2>
+        <p style="margin-top:var(--s-3);color:var(--muted);max-width:56ch">
+          Operamos en la intersección entre la manufactura textil y el abastecimiento
+          industrial. Esa doble naturaleza nos permite responder con precisión técnica,
+          tiempos comprometidos y precios competitivos.
+        </p>
+
+        <div class="feature-list">
+
+          <div class="feature reveal" style="--d:.06s">
+            <span class="feature-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2l8 4v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10V6l8-4z"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </span>
+            <div>
+              <h4>Especificaciones garantizadas</h4>
+              <p>Cada suministro se entrega conforme a las especificaciones técnicas aplicables y verificables en sitio.</p>
+            </div>
+          </div>
+
+          <div class="feature reveal" style="--d:.12s">
+            <span class="feature-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/>
+              </svg>
+            </span>
+            <div>
+              <h4>Logística y tiempos comprometidos</h4>
+              <p>Planeación de entregas con calendario claro y cumplimiento dentro del plazo contractual.</p>
+            </div>
+          </div>
+
+          <div class="feature reveal" style="--d:.18s">
+            <span class="feature-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
+              </svg>
+            </span>
+            <div>
+              <h4>Acompañamiento post-venta</h4>
+              <p>Instalación, funcionalidad y puesta en operación: el sistema queda listo para trabajar.</p>
+            </div>
+          </div>
+
+          <div class="feature reveal" style="--d:.24s">
+            <span class="feature-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/>
+              </svg>
+            </span>
+            <div>
+              <h4>Precios competitivos y estables</h4>
+              <p>Vigencia de precios mínima de 60 días hábiles para que planees sin sorpresas.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="split-media reveal" style="--d:.14s">
+        <div class="media-stack">
+          <div class="media-hero">
+            <svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="mh1" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/>
+                  <stop offset="1" stop-color="#8FCBA9" stop-opacity=".7"/>
+                </linearGradient>
+              </defs>
+              <circle cx="60" cy="60" r="34" stroke="url(#mh1)" stroke-width="2.4"/>
+              <ellipse cx="60" cy="60" rx="14" ry="34" stroke="url(#mh1)" stroke-width="1.4" opacity=".6"/>
+              <path d="M26 60h68" stroke="url(#mh1)" stroke-width="1.4" opacity=".6"/>
+              <path d="M32 38c16 9 40 9 56 0M32 82c16-9 40-9 56 0" stroke="url(#mh1)"
+                    stroke-width="1.4" opacity=".45" fill="none"/>
+              <path d="M8 104c26 6 66-4 84-40" stroke="#F4C542" stroke-width="4"
+                    stroke-linecap="round"/>
+              <path d="M78 56l22 4-8 21" stroke="#F4C542" stroke-width="4"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <div class="media-stats">
+            <div class="mini">
+              <strong>+25</strong>
+              <span>Años de experiencia</span>
+            </div>
+            <div class="mini">
+              <strong>6</strong>
+              <span>Líneas de servicio</span>
+            </div>
+            <div class="mini">
+              <strong>90</strong>
+              <span>Días hábiles de entrega</span>
+            </div>
+            <div class="mini">
+              <strong>100%</strong>
+              <span>Instalado y funcional</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ INSTALACIONES (imagen externa) ============================ -->
+<section class="section facility">
+  <div class="container">
+    <div class="facility-grid">
+
+      <div class="facility-copy reveal">
+        <span class="kicker">Nuestra operación</span>
+        <h2>Capacidad instalada y atención cercana</h2>
+        <p style="margin-top:var(--s-3);color:var(--muted);max-width:54ch">
+          Detrás de cada entrega hay un equipo que verifica, empaca y coordina.
+          Trabajamos con proceso documentado y comunicación directa en cada etapa.
+        </p>
+
+        <div class="facility-points">
+
+          <div class="facility-point reveal" style="--d:.06s">
+            <span class="fp-dot" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18M5 21V7l7-4 7 4v14"/>
+              </svg>
+            </span>
+            <div>
+              <h4>Almacén y logística propia</h4>
+              <p>Control de inventario y preparación de pedidos con verificación previa al envío.</p>
+            </div>
+          </div>
+
+          <div class="facility-point reveal" style="--d:.12s">
+            <span class="fp-dot" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+            </span>
+            <div>
+              <h4>Control de calidad en cada lote</h4>
+              <p>Revisión técnica antes de despachar: lo que sale, funciona.</p>
+            </div>
+          </div>
+
+          <div class="facility-point reveal" style="--d:.18s">
+            <span class="fp-dot" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/>
+              </svg>
+            </span>
+            <div>
+              <h4>Comunicación directa</h4>
+              <p>Un solo punto de contacto para seguimiento de tu pedido.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="facility-media reveal" style="--d:.1s">
+        <!-- Imagen externa con tratamiento de marca (tinte verde) -->
+        <img
+          src="https://firebasestorage.googleapis.com/v0/b/bitralspace.firebasestorage.app/o/UTILS%2FWhatsApp%20Image%202026-09-10%20at%208.38.11%20PM.jpeg?alt=media"
+          alt="Operaciones e instalaciones ESKAEVA"
+          loading="lazy"
+          decoding="async"
+          width="800" height="494">
+        <span class="facility-tint" aria-hidden="true"></span>
+        <span class="facility-grain" aria-hidden="true"></span>
+        <span class="facility-tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 2"/>
+          </svg>
+          ESKAEVA · Operación
+        </span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ MÉTRICAS ============================ -->
+<section class="section band">
+  <div class="band-watermark" aria-hidden="true">
+    <svg viewBox="0 0 120 120" fill="none">
+      <circle cx="60" cy="60" r="38" stroke="currentColor" stroke-width="2.4"/>
+      <ellipse cx="60" cy="60" rx="16" ry="38" stroke="currentColor" stroke-width="1.4" opacity=".6"/>
+      <path d="M22 60h76" stroke="currentColor" stroke-width="1.4" opacity=".6"/>
+      <path d="M6 104c28 6 70-4 90-42" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      <path d="M80 56l24 4-8 22" stroke="currentColor" stroke-width="4"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <div class="container">
+    <header class="section-head center reveal">
+      <span class="kicker">ESKAEVA en números</span>
+      <h2>Capacidad para abastecer operaciones exigentes</h2>
+      <p>Infraestructura, experiencia y control de proceso al servicio de tu proyecto.</p>
+    </header>
+
+    <div class="stats">
+      <div class="stat reveal" style="--d:.02s">
+        <div class="stat-value"><span class="count" data-count="25">0</span><em>+</em></div>
+        <div class="stat-label">Años en la industria</div>
+      </div>
+      <div class="stat reveal" style="--d:.08s">
+        <div class="stat-value"><span class="count" data-count="6">0</span></div>
+        <div class="stat-label">Divisiones de producto</div>
+      </div>
+      <div class="stat reveal" style="--d:.14s">
+        <div class="stat-value"><span class="count" data-count="120">0</span><em>+</em></div>
+        <div class="stat-label">Proyectos suministrados</div>
+      </div>
+      <div class="stat reveal" style="--d:.20s">
+        <div class="stat-value"><span class="count" data-count="98">0</span><em>%</em></div>
+        <div class="stat-label">Entregas en tiempo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PROCESO ============================ -->
+<section class="section" id="proceso" style="background:var(--surface)">
+  <div class="container">
+
+    <header class="section-head center reveal">
+      <span class="kicker">Cómo trabajamos</span>
+      <h2>Un proceso claro, de la solicitud a la operación</h2>
+      <p>Metodología ordenada que reduce riesgos y asegura resultados verificables.</p>
+    </header>
+
+    <div class="steps">
+
+      <article class="step reveal" style="--d:.02s">
+        <span class="step-num" aria-hidden="true"></span>
+        <h4>Contacto y levantamiento</h4>
+        <p>Recibimos tu solicitud, identificamos especificaciones, volúmenes y sitio de entrega.</p>
+      </article>
+
+      <article class="step reveal" style="--d:.08s">
+        <span class="step-num" aria-hidden="true"></span>
+        <h4>Cotización técnica</h4>
+        <p>Integramos partidas, precios unitarios y alcances con vigencia y condiciones claras.</p>
+      </article>
+
+      <article class="step reveal" style="--d:.14s">
+        <span class="step-num" aria-hidden="true"></span>
+        <h4>Suministro y habilitación</h4>
+        <p>Producimos y adquirimos los componentes, con control de calidad previo al envío.</p>
+      </article>
+
+      <article class="step reveal" style="--d:.20s">
+        <span class="step-num" aria-hidden="true"></span>
+        <h4>Instalación y operación</h4>
+        <p>Entregamos el sistema instalado, funcional y en condiciones óptimas de operación.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CONTACTO ============================ -->
+<section class="section contact" id="contacto">
+  <div class="container">
+
+    <header class="section-head center reveal">
+      <span class="kicker">Contacto directo</span>
+      <h2>Hablemos de tu proyecto</h2>
+      <p>
+        Escríbenos o llámanos. Atendemos instituciones públicas, industria manufacturera,
+        constructoras y talleres de confección en todo el país.
+      </p>
+    </header>
+
+    <!-- Datos de contacto -->
+    <div class="contact-grid">
+
+      <a href="mailto:skaevasolution@gmail.com" class="contact-card reveal" style="--d:.02s">
+        <span class="cc-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16v16H4z"/><path d="M4 7l8 6 8-6"/>
+          </svg>
+        </span>
+        <span class="cc-body">
+          <span class="cc-label">Correo electrónico</span>
+          <span class="cc-value">skaevasolution@gmail.com</span>
+        </span>
+        <span class="cc-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </span>
+      </a>
+
+      <a href="tel:+525565433242" class="contact-card reveal" style="--d:.08s">
+        <span class="cc-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/>
+          </svg>
+        </span>
+        <span class="cc-body">
+          <span class="cc-label">Teléfono</span>
+          <span class="cc-value">55 6543 3242</span>
+        </span>
+        <span class="cc-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </span>
+      </a>
+
+      <a href="https://wa.me/525565433242" target="_blank" rel="noopener"
+         class="contact-card contact-card--wa reveal" style="--d:.14s">
+        <span class="cc-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.4 8.4 0 0 1-12.5 7.4L3 20.5l1.7-5.3A8.5 8.5 0 1 1 21 11.5z"/>
+            <path d="M8.5 8.7c.3-.7.6-.7.9-.7h.7c.2 0 .5 0 .7.5l.9 2c.1.3.2.5 0 .8l-.6.8c-.1.2-.2.4-.1.6.4.8 1.4 1.8 2.4 2.3.3.1.4.1.6-.1l.7-.8c.2-.2.4-.2.7-.1l1.9.9c.3.1.5.2.5.5v.6c0 .3-.2.7-.9 1-.7.3-1.4.3-2 .1-1.9-.7-4-2.6-4.8-4.3-.4-.9-.4-1.7-.1-2.4z"/>
+          </svg>
+        </span>
+        <span class="cc-body">
+          <span class="cc-label">WhatsApp</span>
+          <span class="cc-value">Enviar mensaje directo</span>
+        </span>
+        <span class="cc-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </span>
+      </a>
+
+    </div>
+
+    <!-- WIP: formulario en línea en construcción -->
+    <div class="wip-card reveal" style="--d:.1s" role="status" aria-live="polite">
+      <div class="wip-loader" aria-hidden="true">
+        <svg class="wip-ring" viewBox="0 0 60 60">
+          <defs>
+            <linearGradient id="wipGrad" x1="0" y1="0" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#2A8757"/>
+              <stop offset="1" stop-color="#F4C542"/>
+            </linearGradient>
+          </defs>
+          <circle cx="30" cy="30" r="24" fill="none" stroke="rgba(30,107,68,.12)" stroke-width="3"/>
+          <circle cx="30" cy="30" r="24" fill="none" stroke="url(#wipGrad)" stroke-width="3"
+                  stroke-linecap="round" stroke-dasharray="60 220"/>
+        </svg>
+        <span class="wip-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </span>
+      </div>
+
+      <div class="wip-text">
+        <span class="wip-badge"><span class="dot"></span> Work in progress</span>
+        <h3>Estamos construyendo nuestro formulario en línea</h3>
+        <p>
+          Muy pronto podrás enviar tu solicitud de cotización directamente desde aquí.
+          Por ahora contáctanos por correo o WhatsApp — te respondemos a la brevedad.
+        </p>
+      </div>
+
+      <div class="wip-actions">
+        <a href="mailto:skaevasolution@gmail.com" class="btn btn-primary">
+          Enviar correo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </a>
+        <a href="https://wa.me/525565433242" target="_blank" rel="noopener" class="btn btn-ghost">
+          WhatsApp
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="footer">
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <a href="#top" class="brand" aria-label="ESKAEVA, inicio">
+          <span class="brand-mark">
+            <img src="logo-eskaeva.png" alt="ESKAEVA" class="brand-img" width="42" height="42"
+                 loading="lazy" decoding="async"
+                 onerror="this.remove();">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <circle cx="21" cy="21" r="13.5" stroke="#8FCBA9" stroke-width="2.2"/>
+              <ellipse cx="21" cy="21" rx="5.6" ry="13.5" stroke="#8FCBA9" stroke-width="1.4" opacity=".55"/>
+              <path d="M7.5 21h27" stroke="#8FCBA9" stroke-width="1.4" opacity=".55"/>
+              <path d="M4 41c10 2.5 25.5-1.5 33-15" stroke="#F4C542" stroke-width="3.4" stroke-linecap="round"/>
+              <path d="M31 22.4l8.6 1.8-3.4 8" stroke="#F4C542" stroke-width="3.4"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="brand-text">
+            <span class="brand-name">ESKAEVA</span>
+            <span class="brand-sub">S.A. DE C.V.</span>
+          </span>
+        </a>
+        <p class="footer-about">
+          Empresa dedicada a la producción de fibras naturales y sintéticas, hilados,
+          telas y confección; así como a la venta de maquinaria industrial, materiales
+          de construcción, madera, metálicos, herramientas y plomería.
+        </p>
+      </div>
+
+      <div>
+        <h5>Servicios</h5>
+        <ul>
+          <li><a href="#servicios">Fibras e hilados</a></li>
+          <li><a href="#servicios">Telas y confección</a></li>
+          <li><a href="#servicios">Maquinaria industrial</a></li>
+          <li><a href="#servicios">Materiales de construcción</a></li>
+          <li><a href="#servicios">Herramientas y plomería</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>Empresa</h5>
+        <ul>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#servicios">Portafolio</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>Contacto</h5>
+        <ul>
+          <li><a href="mailto:skaevasolution@gmail.com">skaevasolution@gmail.com</a></li>
+          <li><a href="tel:+525565433242">55 6543 3242</a></li>
+          <li><a href="https://wa.me/525565433242" target="_blank" rel="noopener">WhatsApp directo</a></li>
+          <li><a href="#contacto">Cotizaciones sin anticipo</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span id="year">2025</span> <strong>ESKAEVA S.A. de C.V.</strong> · Todos los derechos reservados.</span>
+      <span>Precios en moneda nacional · Vigencia de precios mínima 60 días hábiles.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  document.documentElement.classList.remove('no-js');
+
+  /* ---------- Año dinámico ---------- */
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ---------- Header con estado al hacer scroll ---------- */
+  var header = document.getElementById('header');
+  var onScroll = function () {
+    if (window.scrollY > 24) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ---------- Menú móvil ---------- */
+  var toggle = document.getElementById('navToggle');
+  var menu = document.getElementById('navMenu');
+
+  function closeMenu() {
+    menu.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Abrir menú');
+  }
+
+  toggle.addEventListener('click', function () {
+    var open = menu.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  });
+
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  /* ---------- Reveal on scroll ---------- */
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      revealObserver.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      el.classList.add('is-in');
+    });
+  }
+
+  /* ---------- Barras del panel ---------- */
+  var bars = document.querySelectorAll('.panel-bar');
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var barObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          barObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    bars.forEach(function (b) { barObserver.observe(b); });
+  } else {
+    bars.forEach(function (b) { b.classList.add('is-in'); });
+  }
+
+  /* ---------- Contadores animados ---------- */
+  function animateCount(el) {
+    var target = parseFloat(el.dataset.count || '0');
+    var duration = 1600;
+    var startTime = null;
+
+    function step(now) {
+      if (startTime === null) startTime = now;
+      var p = Math.min((now - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased);
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = target;
+    }
+    requestAnimationFrame(step);
+  }
+
+  var counters = document.querySelectorAll('.count');
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var countObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          countObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.6 });
+    counters.forEach(function (c) { countObserver.observe(c); });
+  } else {
+    counters.forEach(function (c) { c.textContent = c.dataset.count; });
+  }
+
+  /* ---------- Scroll suave con compensación de header ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var id = link.getAttribute('href');
+      if (id === '#' || id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var top = target.getBoundingClientRect().top + window.scrollY - 96;
+      window.scrollTo({
+        top: top,
+        behavior: reduceMotion ? 'auto' : 'smooth'
+      });
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
